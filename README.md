@@ -14,7 +14,7 @@ It includes:
 2. (Optional) Verify integrity:
    ```bash
    shasum -a 256 dist/tellermcp-mcp.skill
-   # expected: 3690af32816cae96b20d32348ed133c84fee72e5fbf41b41f1e2ece4540dddd2
+   # expected: 80707f0bcc265f39e947dddef4694919627b0e90eefce41cb2f239b9f319d280
    ```
 3. Install into your agent:
    ```bash
