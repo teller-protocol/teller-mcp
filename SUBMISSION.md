@@ -4,14 +4,12 @@
 **Version:** v0.1.0
 
 ## Submission Summary
-- **Description:** MCP skill exposing Teller delta-neutral opportunities, borrow pool discovery, borrower-specific terms, borrow transaction builders, loan listings, and repayment builders. Includes full Node/TypeScript source and ready-to-install `.skill` artifact.
+- **Description:** Teller lets on-chain borrowers tap stablecoin liquidity against altcoins with no margin-call liquidations. This MCP skill packages the Teller borrowing workflows (pool discovery, terms, borrow/repay transactions) plus optional delta-neutral scouting into a single installable asset.
 - **Primary Use Cases:**
-  1. Scan Teller markets for positive net APR delta-neutral plays.
-  2. Discover and filter Teller borrow pools per chain/collateral.
-  3. Compute per-wallet borrow capacity and LTV for any pool.
-  4. Generate borrow transaction calldata (approvals + accept commitment).
-  5. Inspect all loans for a wallet.
-  6. Build repay transactions (full/partial) with approvals.
+  1. Discover Teller borrow pools across chains/collateral pairs.
+  2. Compute per-wallet borrow capacity + LTV and generate borrow transaction calldata (approvals + accept commitment).
+  3. Inspect active/historic loans and build repayment transactions (full or partial).
+  4. (Optional) Scan delta-neutral opportunities by matching Teller borrow APRs with negative perp funding rates.
 
 ## Release Artifacts
 - **GitHub Release:** https://github.com/teller-protocol/teller-mcp/releases/tag/v0.1.0

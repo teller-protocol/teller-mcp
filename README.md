@@ -1,9 +1,11 @@
 # Teller MCP Skill
 
-This repository packages the **Tellermcp** Model Context Protocol server as an OpenClaw skill. It includes:
+This repository packages the **Tellermcp** Model Context Protocol server as an OpenClaw skill. Teller lets users borrow stablecoins against altcoins with no margin-call liquidations, and this skill gives agents a turnkey way to manage those loans plus delta-neutral strategies.
+
+It includes:
 
 - `skills/tellermcp-mcp/SKILL.md` — skill metadata + runbook
-- `skills/tellermcp-mcp/scripts/tellermcp-server/` — TypeScript MCP server source (Teller delta-neutral + lending tools)
+- `skills/tellermcp-mcp/scripts/tellermcp-server/` — TypeScript MCP server source
 - `skills/tellermcp-mcp/references/delta-neutral-api.md` — API cheat sheet for Teller endpoints
 - `dist/tellermcp-mcp.skill` — pre-built package ready for `openclaw skills install`
 
@@ -27,7 +29,7 @@ This repository packages the **Tellermcp** Model Context Protocol server as an O
      "cwd": "/absolute/path/to/skills/tellermcp-mcp/scripts/tellermcp-server"
    }
    ```
-5. Restart mcporter; the six Teller tools become available immediately.
+5. Restart mcporter; the Teller tools become available immediately.
 
 ## Development
 
@@ -60,20 +62,20 @@ See [RELEASE.md](RELEASE.md) for the full submission workflow. Summary:
 4. Create a GitHub release and attach `dist/tellermcp-mcp.skill`.
 5. Submit the release URL + checksum to ClawHub.
 
-## MCP Operations
+## MCP Operations (Borrowing First)
 
-The MCP server publishes six Teller-specific tools. Each returns:
+The skill focuses on Teller’s borrow/repay rails (no liquidations), then layers on delta-neutral discovery. Each tool returns:
 - A concise human summary (text)
 - `structuredContent.payload` with the raw JSON for automation
 
 | Tool | Description | Common Inputs | Output Highlights |
 | --- | --- | --- | --- |
-| `get-delta-neutral-opportunities` | Surfaces delta-neutral arbitrage pairs by comparing Teller borrow APR vs. perp funding APRs. | `chainId`, `coin`, `limit`, `minNetAprPct` (all optional) | Sorted opportunity list with `netAprPct`, principal available, perp venue metadata. |
-| `get-borrow-pools` | Enumerates Teller borrow pools + enrichment. | `chainId`, `collateralTokenAddress`, `borrowTokenAddress`, `poolAddress`, `ttl` (optional cache override) | Pool stats: collateral ratios, available liquidity, fees, payment cycle. |
+| `get-borrow-pools` | Enumerates Teller borrow pools + enrichment. | `chainId`, `collateralTokenAddress`, `borrowTokenAddress`, `poolAddress`, `ttl` | Pool stats: collateral ratios, available liquidity, fees, payment cycle. |
 | `get-borrow-terms` | Calculates per-wallet borrow capacity for a specific pool + collateral token. | `wallet`, `chainId`, `collateralToken`, `poolAddress` | `maxBorrowUsd`, `ltvPct`, collateral balances, principal available. |
 | `build-borrow-transactions` | Generates the transaction sequence to borrow (approvals + `acceptSmartCommitment`). | `walletAddress`, `collateralTokenAddress`, `chainId`, `poolAddress`, `collateralAmount`, `principalAmount`, `loanDuration` | Ordered transactions with calldata, plus summary flags (`needsApproval`, `needsForwarderApproval`). |
 | `get-wallet-loans` | Fetches all Teller loans for a wallet (active + historical). | `walletAddress`, `chainId` | Loan list with status, APR, schedule, collateral info. |
-| `build-repay-transactions` | Builds approval + repay transactions for full or partial loan payoff. | `bidId`, `chainId`, `walletAddress`, optional `amount` | Repayment calldata, total owed, lending token metadata, full vs. partial flag. |
+| `build-repay-transactions` | Builds approval + repay transactions for full or partial payoff. | `bidId`, `chainId`, `walletAddress`, optional `amount` | Repayment calldata, total owed, lending token metadata, full vs. partial flag. |
+| `get-delta-neutral-opportunities` | (Optional) Surfaces delta-neutral arbitrage pairs by comparing Teller borrow APR vs. perp funding APRs. | `chainId`, `coin`, `limit`, `minNetAprPct` | Sorted opportunity list with `netAprPct`, principal available, perp venue metadata. |
 
 ## Agent Integration Reminder
 After installation, restart mcporter (or your agent runner) so it can discover the new MCP transport and tools.
