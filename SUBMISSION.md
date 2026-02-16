@@ -4,7 +4,7 @@
 **Version:** v0.1.0
 
 ## Submission Summary
-- **Description:** Teller lets on-chain borrowers tap stablecoin liquidity against altcoins with no margin-call liquidations. This MCP skill packages the Teller borrowing workflows (pool discovery, terms, borrow/repay transactions) plus optional delta-neutral scouting into a single installable asset.
+- **Description:** Teller lets onchain agents borrow stablecoins against altcoins with no margin-call liquidations. This MCP skill packages the Teller borrowing workflows (pool discovery, terms, borrow/repay transactions) plus optional delta-neutral scouting into a single installable asset.
 - **Primary Use Cases:**
   1. Discover Teller borrow pools across chains/collateral pairs.
   2. Compute per-wallet borrow capacity + LTV and generate borrow transaction calldata (approvals + accept commitment).
