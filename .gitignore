@@ -2,3 +2,6 @@ node_modules/
 dist/
 .env
 .DS_Store
+skills/tellermcp-mcp/scripts/tellermcp-server/node_modules/
+skills/tellermcp-mcp/scripts/tellermcp-server/dist/
+*.skill
