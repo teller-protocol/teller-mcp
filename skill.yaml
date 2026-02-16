@@ -1,8 +1,9 @@
 name: teller-mcp-borrow
-version: 0.1.3
+version: 0.1.4
 description: >-
-  Teller MCP borrow skill (USDC collateral, altcoin loans, no margin-call
-  liquidations) with optional delta-neutral funding scans for advanced users.
+  Teller MCP borrow skill: use altcoins/USDC as collateral, quote max borrow,
+  build borrow + repay transactions, and only then explore delta-neutral
+  strategies as an optional follow-on.
 author: Teller Protocol
 displayName: "Teller MCP – Borrow USDC & Altcoins (no margin calls)"
 repository: https://github.com/teller-protocol/teller-mcp
