@@ -1,5 +1,5 @@
-name: teller-mcp-borrow
-version: 0.1.6
+name: teller-borrow
+version: 0.2.0
 description: >-
   Teller MCP borrow skill: use altcoins/USDC as collateral, quote max borrow,
   build borrow + repay transactions, and only then explore delta-neutral
