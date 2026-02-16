@@ -1,15 +1,15 @@
 ---
 name: tellermcp-mcp
-description: Expose the Teller delta-neutral + lending Model Context Protocol server. Use this when you need to install, run, or update the Tellermcp MCP backend so agents can fetch opportunities, borrow terms, and on-chain tx builders for Teller.
+description: Teller borrowing MCP skill (no liquidation) that runs the Tellermcp server so agents can quote max borrow, build borrow/repay tx, and optionally scan delta-neutral funding spreads.
 ---
 
 # Tellermcp MCP Skill
 
 ## Overview
-This skill bundles a ready-to-run MCP server (`scripts/tellermcp-server/`) that surfaces Teller delta-neutral arbitrage data, borrow pool discovery, loan terms, borrow transaction builders, and repayment helpers. Load this skill whenever you must:
+Teller lets agents borrow stablecoins against altcoins with **no margin-call liquidations**. This skill bundles a ready-to-run MCP server (`scripts/tellermcp-server/`) focused on Teller’s borrowing surface—pool discovery, wallet-specific terms, borrow transaction builders, loan lookups, and repayment helpers—with optional delta-neutral funding scans. Load it whenever you must:
 - Deploy or modify the Tellermcp MCP server
 - Re-run `npm install`, build, or tests for the server
-- Register Tellermcp with mcporter/OpenClaw so agents can hit the Teller APIs via MCP tools
+- Register Tellermcp with mcporter/OpenClaw so agents can tap Teller borrowing + repay endpoints (and optionally delta-neutral insights)
 
 ## Quick Start
 1. `cd scripts/tellermcp-server`

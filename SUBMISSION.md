@@ -1,7 +1,7 @@
 # ClawHub Submission Notes
 
 **Skill Name:** Tellermcp MCP
-**Version:** v0.1.0
+**Version:** v0.1.1
 
 ## Submission Summary
 - **Description:** Teller lets onchain agents borrow stablecoins against altcoins with no margin-call liquidations. This MCP skill packages the Teller borrowing workflows (pool discovery, terms, borrow/repay transactions) plus optional delta-neutral scouting into a single installable asset.
@@ -12,16 +12,16 @@
   4. (Optional) Scan delta-neutral opportunities by matching Teller borrow APRs with negative perp funding rates.
 
 ## Release Artifacts
-- **GitHub Release:** https://github.com/teller-protocol/teller-mcp/releases/tag/v0.1.0
-- **Download URL:** https://github.com/teller-protocol/teller-mcp/releases/download/v0.1.0/tellermcp-mcp.skill
-- **SHA-256:** `edfb892245bb082a642bad5c2657fd0ed67596e0f5a4a2bb0c92a57ef47b1e44`
+- **GitHub Release:** https://github.com/teller-protocol/teller-mcp/releases/tag/v0.1.1
+- **Download URL:** https://github.com/teller-protocol/teller-mcp/releases/download/v0.1.1/tellermcp-mcp.skill
+- **SHA-256:** `832c0bbf9c537c3a9f68efe62da12948977147e9b46fab2031464b542767e674`
 
 ## Installation Snippet
 ```bash
 # Download + verify
-curl -L -o tellermcp-mcp.skill https://github.com/teller-protocol/teller-mcp/releases/download/v0.1.0/tellermcp-mcp.skill
+curl -L -o tellermcp-mcp.skill https://github.com/teller-protocol/teller-mcp/releases/download/v0.1.1/tellermcp-mcp.skill
 shasum -a 256 tellermcp-mcp.skill
-# expect: edfb892245bb082a642bad5c2657fd0ed67596e0f5a4a2bb0c92a57ef47b1e44
+# expect: 832c0bbf9c537c3a9f68efe62da12948977147e9b46fab2031464b542767e674
 
 # Install
 openclaw skills install tellermcp-mcp.skill

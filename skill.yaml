@@ -1,8 +1,9 @@
 name: tellermcp
-version: 0.1.0
+version: 0.1.1
 description: >-
-  Teller MCP skill exposing borrow/repay tooling (no liquidation) plus optional
-  delta-neutral opportunity surfacing for Teller Protocol markets.
+  Teller borrowing MCP skill (no margin-call liquidations) that quotes max
+  borrow, builds borrow/repay transactions, and optionally scans delta-neutral
+  spreads for Teller markets.
 author: Teller Protocol
 repository: https://github.com/teller-protocol/teller-mcp
 license: MIT
