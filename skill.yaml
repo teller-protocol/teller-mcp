@@ -1,5 +1,5 @@
-name: tellermcp
-version: 0.1.1
+name: teller-borrow-mcp
+version: 0.1.2
 description: >-
   Teller borrowing MCP skill (no margin-call liquidations) that quotes max
   borrow, builds borrow/repay transactions, and optionally scans delta-neutral
