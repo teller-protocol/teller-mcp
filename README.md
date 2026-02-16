@@ -5,6 +5,29 @@ This repository packages the **Tellermcp** Model Context Protocol server as an O
 - `skills/tellermcp-mcp/SKILL.md` — skill metadata + runbook
 - `skills/tellermcp-mcp/scripts/tellermcp-server/` — TypeScript MCP server source (Teller delta-neutral + lending tools)
 - `skills/tellermcp-mcp/references/delta-neutral-api.md` — API cheat sheet for Teller endpoints
+- `dist/tellermcp-mcp.skill` — pre-built package ready for `openclaw skills install`
+
+## Installation (OpenClaw)
+1. Download `dist/tellermcp-mcp.skill` from the latest release (or this repo).
+2. (Optional) Verify integrity:
+   ```bash
+   shasum -a 256 dist/tellermcp-mcp.skill
+   # expected: edfb892245bb082a642bad5c2657fd0ed67596e0f5a4a2bb0c92a57ef47b1e44
+   ```
+3. Install into your agent:
+   ```bash
+   openclaw skills install dist/tellermcp-mcp.skill
+   ```
+4. Register the MCP server with mcporter/OpenClaw:
+   ```jsonc
+   {
+     "name": "tellermcp",
+     "command": "npm",
+     "args": ["start"],
+     "cwd": "/absolute/path/to/skills/tellermcp-mcp/scripts/tellermcp-server"
+   }
+   ```
+5. Restart mcporter; the six Teller tools become available immediately.
 
 ## Development
 
@@ -15,14 +38,27 @@ npm run build
 npm start   # runs MCP server over stdio
 ```
 
-## Packaging for OpenClaw
+## Packaging for OpenClaw / ClawHub
 
+Prerequisite: install PyYAML (required by OpenClaw's packager).
+```bash
+python3 -m pip install --user pyyaml
+```
+
+Then run:
 ```bash
 SKILL_DIR=skills/tellermcp-mcp
 python3 /usr/local/lib/node_modules/openclaw/skills/skill-creator/scripts/package_skill.py "$SKILL_DIR"
 ```
+This produces `dist/tellermcp-mcp.skill` (already pre-built in this repo). Re-run whenever code changes to refresh the artifact.
 
-This produces `tellermcp-mcp.skill`, which you can upload to OpenClaw or ClawHub.
+## ClawHub Release Checklist
+See [RELEASE.md](RELEASE.md) for the full submission workflow. Summary:
+1. Bump version/tag (e.g., `v0.1.0`).
+2. Repackage the skill (steps above) and recompute SHA-256.
+3. Commit the updated artifact + metadata.
+4. Create a GitHub release and attach `dist/tellermcp-mcp.skill`.
+5. Submit the release URL + checksum to ClawHub.
 
 ## MCP Operations
 
@@ -39,17 +75,5 @@ The MCP server publishes six Teller-specific tools. Each returns:
 | `get-wallet-loans` | Fetches all Teller loans for a wallet (active + historical). | `walletAddress`, `chainId` | Loan list with status, APR, schedule, collateral info. |
 | `build-repay-transactions` | Builds approval + repay transactions for full or partial loan payoff. | `bidId`, `chainId`, `walletAddress`, optional `amount` | Repayment calldata, total owed, lending token metadata, full vs. partial flag. |
 
-## Agent Integration
-
-To register the MCP server with mcporter/OpenClaw:
-
-```jsonc
-{
-  "name": "tellermcp",
-  "command": "npm",
-  "args": ["start"],
-  "cwd": "/absolute/path/to/skills/tellermcp-mcp/scripts/tellermcp-server"
-}
-```
-
-Once mcporter refreshes, any Codex agent can call the six tools above to reason about Teller opportunities, borrowing, and repayment flows.
+## Agent Integration Reminder
+After installation, restart mcporter (or your agent runner) so it can discover the new MCP transport and tools.
