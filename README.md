@@ -1,6 +1,6 @@
 # Teller MCP Skill
 
-This repository packages the **Tellermcp** Model Context Protocol server as an OpenClaw skill. Teller lets agents borrow stablecoins against altcoins with no margin-call liquidations; this skill gives agents a turnkey MCP interface for quoting max borrow, generating borrow/repay transactions, and (optionally) scanning delta-neutral funding spreads for Teller markets.
+This repository packages the **Teller MCP Borrow** server as an OpenClaw skill. Teller lets agents borrow stablecoins against altcoins with no margin-call liquidations; this skill gives agents a turnkey MCP interface for pool discovery, max-borrow quotes, borrow/repay transactions, and only then (optionally) delta-neutral funding scans.
 
 It includes:
 
@@ -14,7 +14,7 @@ It includes:
 2. (Optional) Verify integrity:
    ```bash
    shasum -a 256 dist/tellermcp-mcp.skill
-   # expected: 832c0bbf9c537c3a9f68efe62da12948977147e9b46fab2031464b542767e674
+   # expected: 43a100bd52fbfb5d04bfa21c49981e98085e9cec98ca988efaaec45b305fe5a7
    ```
 3. Install into your agent:
    ```bash

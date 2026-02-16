@@ -1,10 +1,10 @@
-name: teller-borrow-mcp
-version: 0.1.2
+name: teller-mcp-borrow
+version: 0.1.3
 description: >-
-  Teller borrowing MCP skill (no margin-call liquidations) that quotes max
-  borrow, builds borrow/repay transactions, and optionally scans delta-neutral
-  spreads for Teller markets.
+  Teller MCP borrow skill (USDC collateral, altcoin loans, no margin-call
+  liquidations) with optional delta-neutral funding scans for advanced users.
 author: Teller Protocol
+displayName: "Teller MCP – Borrow USDC & Altcoins (no margin calls)"
 repository: https://github.com/teller-protocol/teller-mcp
 license: MIT
 entrypoint: skills/tellermcp-mcp/scripts/tellermcp-server
@@ -14,4 +14,4 @@ permissions:
 tags:
   - defi
   - teller
-  - mcp
+  - borrowing
