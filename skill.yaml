@@ -1,0 +1,16 @@
+name: tellermcp
+version: 0.1.0
+description: >-
+  Teller MCP skill exposing borrow/repay tooling (no liquidation) plus optional
+  delta-neutral opportunity surfacing for Teller Protocol markets.
+author: Teller Protocol
+repository: https://github.com/teller-protocol/teller-mcp
+license: MIT
+entrypoint: skills/tellermcp-mcp/scripts/tellermcp-server
+artifact: dist/tellermcp-mcp.skill
+permissions:
+  - github
+tags:
+  - defi
+  - teller
+  - mcp
